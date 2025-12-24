@@ -1,531 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - NextGen AI Automation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #10b981;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --text: #334155;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-        }
-
-        .logo-text {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .cta-btn {
-            background: var(--gradient);
-            color: white !important;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            transition: transform 0.3s;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: var(--text);
-            transition: all 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: var(--gradient);
-            color: white;
-            padding: 120px 2rem 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        /* About Section */
-        .about-content {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
-        }
-
-        .section-title p {
-            font-size: 1.2rem;
-            color: var(--text);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 80px;
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            color: var(--dark);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: var(--text);
-        }
-
-        .about-image {
-            width: 100%;
-            height: 400px;
-            background: var(--gradient);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: white;
-        }
-
-        /* Values Section */
-        .values {
-            background: var(--light);
-            padding: 80px 2rem;
-        }
-
-        .values-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .value-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-
-        .value-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .value-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-        }
-
-        .value-card h4 {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
-        }
-
-        .value-card p {
-            color: var(--text);
-            line-height: 1.8;
-        }
-
-        /* Team Section */
-        .team {
-            padding: 80px 2rem;
-            background: white;
-        }
-
-        .team-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .team-member {
-            text-align: center;
-        }
-
-        .team-photo {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 1.5rem;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .team-member h4 {
-            font-size: 1.3rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .team-member p {
-            color: var(--text);
-            font-size: 1rem;
-        }
-
-        /* Timeline */
-        .timeline {
-            background: var(--light);
-            padding: 80px 2rem;
-        }
-
-        .timeline-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 75px;
-            top: 40px;
-            bottom: -40px;
-            width: 2px;
-            background: var(--primary);
-        }
-
-        .timeline-item:last-child::before {
-            display: none;
-        }
-
-        .timeline-year {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary);
-            text-align: right;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .timeline-content h4 {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
-        }
-
-        .timeline-content p {
-            color: var(--text);
-            line-height: 1.8;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--dark);
-            color: white;
-            padding: 100px 2rem;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-section button {
-            background: white;
-            color: var(--dark);
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .cta-section button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 2rem 30px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            color: rgba(255,255,255,0.7);
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .timeline-item {
-                grid-template-columns: 100px 1fr;
-                gap: 2rem;
-            }
-
-            .timeline-item::before {
-                left: 50px;
-            }
-
-            .timeline-year {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .values-grid,
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <!-- Link to Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="nav-container">
             <div class="logo">
-                <div class="logo-icon">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect x="20" y="25" width="60" height="50" rx="12" fill="url(#logoGradient)"/>
-                        <line x1="50" y1="25" x2="50" y2="15" stroke="url(#logoGradient)" stroke-width="3" stroke-linecap="round"/>
-                        <circle cx="50" cy="12" r="4" fill="#667eea"/>
-                        <circle cx="35" cy="45" r="6" fill="white"/>
-                        <circle cx="65" cy="45" r="6" fill="white"/>
-                        <circle cx="36" cy="45" r="3" fill="#667eea"/>
-                        <circle cx="66" cy="45" r="3" fill="#667eea"/>
-                        <rect x="35" y="58" width="30" height="3" rx="1.5" fill="white" opacity="0.9"/>
-                    </svg>
-                </div>
-                <span class="logo-text">NEXTGEN AI</span>
+                <a href="index.html" class="logo" style="text-decoration: none;">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="20" y="25" width="60" height="50" rx="12" fill="url(#logoGradient)" />
+                            <line x1="50" y1="25" x2="50" y2="15" stroke="url(#logoGradient)" stroke-width="3"
+                                stroke-linecap="round" />
+                            <circle cx="50" cy="12" r="4" fill="#4f46e5" />
+                            <circle cx="35" cy="45" r="6" fill="white" />
+                            <circle cx="65" cy="45" r="6" fill="white" />
+                            <circle cx="36" cy="45" r="3" fill="#4f46e5" />
+                            <circle cx="66" cy="45" r="3" fill="#4f46e5" />
+                            <rect x="35" y="58" width="30" height="3" rx="1.5" fill="white" opacity="0.9" />
+                        </svg>
+                    </div>
+                    <span class="logo-text">NEXTGEN AI</span>
+                </a>
             </div>
             <ul class="nav-links">
-                 <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="service.html">Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="contact.html" class="cta-btn">Get Started</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Get Started</a></li>
             </ul>
             <div class="mobile-menu">
                 <span></span>
@@ -536,185 +53,246 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
+    <section class="hero" style="min-height: 50vh;">
+        <div class="hero-container">
             <h1>About NextGen AI Automation</h1>
             <p>Pioneering the future of enterprise automation with intelligent AI solutions</p>
         </div>
     </section>
 
     <!-- About Content -->
-    <section class="about-content">
-        <div class="about-grid">
-            <div class="about-text">
-                <h3>Who We Are</h3>
-                <p>NextGen AI Automation is a leading provider of intelligent automation solutions for enterprises worldwide. Founded in 2018, we've helped over 500 companies transform their operations through cutting-edge AI technology.</p>
-                <p>Our team of AI experts, developers, and consultants work together to deliver custom solutions that drive real business value. We believe in the power of automation to free humans from repetitive tasks, allowing them to focus on what truly matters.</p>
+    <section class="section-padding">
+        <div class="container">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 4rem; align-items: center; margin-bottom: 5rem;">
+                <div class="reveal">
+                    <h3>Who We Are</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--text);">NextGen AI Automation is a leading provider of
+                        intelligent automation solutions for enterprises worldwide. Founded in 2018, we've helped over
+                        500 companies transform their operations through cutting-edge AI technology.</p>
+                    <p style="color: var(--text);">Our team of AI experts, developers, and consultants work together to
+                        deliver custom solutions that drive real business value. We believe in the power of automation
+                        to free humans from repetitive tasks, allowing them to focus on what truly matters.</p>
+                </div>
+                <div class="reveal"
+                    style="width: 100%; height: 400px; background: var(--gradient); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 5rem; color: white;">
+                    🤖
+                </div>
             </div>
-            <div class="about-image">
-                🤖
-            </div>
-        </div>
 
-        <div class="about-grid">
-            <div class="about-image">
-                💡
-            </div>
-            <div class="about-text">
-                <h3>Our Mission</h3>
-                <p>To empower enterprises with intelligent AI agents that transform operations, reduce workload, and accelerate innovation. We strive to make advanced AI technology accessible and practical for businesses of all sizes.</p>
-                <p>We're committed to delivering solutions that are not only technologically advanced but also user-friendly, ethical, and aligned with our clients' business goals.</p>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 4rem; align-items: center;">
+                <div class="reveal"
+                    style="width: 100%; height: 400px; background: var(--secondary); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 5rem; color: white; order: 2;">
+                    💡
+                </div>
+                <!-- Hack for better stacking on mobile if needed, but grid usually handles order well with specific media queries. For simplicity keeping inline style logic minimal here. -->
+                <div class="reveal">
+                    <h3>Our Mission</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--text);">To empower enterprises with intelligent AI
+                        agents that transform operations, reduce workload, and accelerate innovation. We strive to make
+                        advanced AI technology accessible and practical for businesses of all sizes.</p>
+                    <p style="color: var(--text);">We're committed to delivering solutions that are not only
+                        technologically advanced but also user-friendly, ethical, and aligned with our clients' business
+                        goals.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Values Section -->
-    <section class="values">
-        <div class="section-title">
-            <h2>Our Core Values</h2>
-            <p>The principles that guide everything we do</p>
-        </div>
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon">🎯</div>
-                <h4>Innovation</h4>
-                <p>We constantly push boundaries and explore new possibilities in AI technology to deliver cutting-edge solutions.</p>
+    <section class="section-padding" style="background: var(--light);">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Our Core Values</h2>
+                <p>The principles that guide everything we do</p>
             </div>
-            <div class="value-card">
-                <div class="value-icon">🤝</div>
-                <h4>Partnership</h4>
-                <p>We build long-term relationships with our clients, working as partners in their digital transformation journey.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">✨</div>
-                <h4>Excellence</h4>
-                <p>We maintain the highest standards in everything we do, from code quality to customer service.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">🔒</div>
-                <h4>Integrity</h4>
-                <p>We operate with transparency, honesty, and ethical practices in all our business dealings.</p>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Innovation</h4>
+                    <p>We constantly push boundaries and explore new possibilities in AI technology to deliver
+                        cutting-edge solutions.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🤝</div>
+                    <h4>Partnership</h4>
+                    <p>We build long-term relationships with our clients, working as partners in their digital
+                        transformation journey.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">✨</div>
+                    <h4>Excellence</h4>
+                    <p>We maintain the highest standards in everything we do, from code quality to customer service.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🔒</div>
+                    <h4>Integrity</h4>
+                    <p>We operate with transparency, honesty, and ethical practices in all our business dealings.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Timeline Section -->
-    <section class="timeline">
-        <div class="section-title">
-            <h2>Our Journey</h2>
-            <p>Milestones in our growth</p>
-        </div>
-        <div class="timeline-container">
-            <div class="timeline-item">
-                <div class="timeline-year">2018</div>
-                <div class="timeline-content">
-                    <h4>Foundation</h4>
-                    <p>NextGen AI Automation was founded with a vision to democratize AI automation for enterprises.</p>
-                </div>
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Our Journey</h2>
+                <p>Milestones in our growth</p>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2020</div>
-                <div class="timeline-content">
-                    <h4>Major Expansion</h4>
-                    <p>Reached 100+ enterprise clients and expanded our team to 50+ AI specialists.</p>
+            <div style="max-width: 900px; margin: 0 auto; position: relative;">
+                <!-- Timeline styling specific to this page, could be in style.css but simple enough to inline or use utility classes -->
+                <!-- Hard to replicate complex timeline in pure inline without utility classes, assuming style.css covers basic typography but timeline was specific. -->
+                <!-- I will recreate the timeline using flex/grid -->
+
+                <div class="reveal"
+                    style="display: grid; grid-template-columns: 100px 1fr; gap: 2rem; margin-bottom: 3rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary); text-align: right;">2018
+                    </div>
+                    <div class="service-card" style="padding: 2rem; text-align: left;">
+                        <h4 style="margin-bottom: 1rem;">Foundation</h4>
+                        <p>NextGen AI Automation was founded with a vision to democratize AI automation for enterprises.
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2022</div>
-                <div class="timeline-content">
-                    <h4>Industry Recognition</h4>
-                    <p>Awarded "Best AI Automation Platform" and featured in leading technology publications.</p>
+
+                <div class="reveal"
+                    style="display: grid; grid-template-columns: 100px 1fr; gap: 2rem; margin-bottom: 3rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary); text-align: right;">2020
+                    </div>
+                    <div class="service-card" style="padding: 2rem; text-align: left;">
+                        <h4 style="margin-bottom: 1rem;">Major Expansion</h4>
+                        <p>Reached 100+ enterprise clients and expanded our team to 50+ AI specialists.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2025</div>
-                <div class="timeline-content">
-                    <h4>Global Leader</h4>
-                    <p>Serving 500+ enterprises worldwide with 10,000+ AI agents deployed across industries.</p>
+
+                <div class="reveal"
+                    style="display: grid; grid-template-columns: 100px 1fr; gap: 2rem; margin-bottom: 3rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary); text-align: right;">2022
+                    </div>
+                    <div class="service-card" style="padding: 2rem; text-align: left;">
+                        <h4 style="margin-bottom: 1rem;">Industry Recognition</h4>
+                        <p>Awarded "Best AI Automation Platform" and featured in leading technology publications.</p>
+                    </div>
                 </div>
+
+                <div class="reveal" style="display: grid; grid-template-columns: 100px 1fr; gap: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary); text-align: right;">2025
+                    </div>
+                    <div class="service-card" style="padding: 2rem; text-align: left;">
+                        <h4 style="margin-bottom: 1rem;">Global Leader</h4>
+                        <p>Serving 500+ enterprises worldwide with 10,000+ AI agents deployed across industries.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Team Section -->
-    <section class="team">
-        <div class="section-title">
-            <h2>Meet Our Leadership</h2>
-            <p>The team driving innovation forward</p>
-        </div>
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="team-photo">👨‍💼</div>
-                <h4>John Anderson</h4>
-                <p>CEO & Founder</p>
+    <section class="section-padding" style="background: var(--light);">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Meet Our Leadership</h2>
+                <p>The team driving innovation forward</p>
             </div>
-            <div class="team-member">
-                <div class="team-photo">👩‍💼</div>
-                <h4>Sarah Mitchell</h4>
-                <p>Chief Technology Officer</p>
-            </div>
-            <div class="team-member">
-                <div class="team-photo">👨‍💼</div>
-                <h4>David Chen</h4>
-                <p>Head of AI Research</p>
-            </div>
-            <div class="team-member">
-                <div class="team-photo">👩‍💼</div>
-                <h4>Emily Roberts</h4>
-                <p>VP of Customer Success</p>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div
+                        style="width: 150px; height: 150px; margin: 0 auto 1.5rem; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                        👨‍💼</div>
+                    <h4>John Anderson</h4>
+                    <p style="color: var(--primary);">CEO & Founder</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div
+                        style="width: 150px; height: 150px; margin: 0 auto 1.5rem; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                        👩‍💼</div>
+                    <h4>Sarah Mitchell</h4>
+                    <p style="color: var(--primary);">Chief Technology Officer</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div
+                        style="width: 150px; height: 150px; margin: 0 auto 1.5rem; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                        👨‍💼</div>
+                    <h4>David Chen</h4>
+                    <p style="color: var(--primary);">Head of AI Research</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div
+                        style="width: 150px; height: 150px; margin: 0 auto 1.5rem; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                        👩‍💼</div>
+                    <h4>Emily Roberts</h4>
+                    <p style="color: var(--primary);">VP of Customer Success</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
+    <!-- CTA Section -->
     <section class="cta-section">
-        <h2>Ready to Transform Your Business?</h2>
-        <p>Join hundreds of enterprises that trust NextGen AI Automation</p>
-        <button onclick="alert('Contact form would open here')">Get Started Today</button>
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: white;">Ready to Transform Your Business?</h2>
+            <p
+                style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Join hundreds of enterprises that trust NextGen AI Automation
+            </p>
+            <a href="contact.html" class="btn btn-outline-white">Get Started Today</a>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="contact.html" class="cta-btn">Get Started</a></li>
-                </ul>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col" style="max-width: 300px;">
+                    <div style="display: flex; alignItems: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+                        <span style="font-size: 1.5rem;">🤖</span>
+                        <h4 style="margin-bottom: 0;">NextGen AI</h4>
+                    </div>
+                    <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">
+                        Empowering enterprises with intelligent AI solutions. Automate, optimize, and innovate with our
+                        cutting-edge technology.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>BMR Complex 2nd floor</li>
+                        <li>Bangalore 560100</li>
+                        <li><a href="tel:+918310897655">+91 8310897655</a></li>
+                        <li><a href="mailto:hello@nextgenai.io">hello@nextgenai.io</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <ul>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>© 2025 NextGen AI Automation. All Rights Reserved</p>
             </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <ul>
-                    <li>BMR Complex 2nd floor</li>
-                    <li>Bangalore 560100</li>
-                    <li><a href="tel:+918310897655">+91 8310897655</a></li>
-                    <li><a href="mailto:hello@nextgenai.io">hello@nextgenai.io</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 NextGen AI Automation. All Rights Reserved</p>
         </div>
     </footer>
 
-    <script>
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-    </script>
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
 </body>
+
 </html>
